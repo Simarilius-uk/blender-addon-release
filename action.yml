@@ -50,23 +50,23 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: ${{ inputs.artifact_name }}
-        path: ./out
+        path: ./i_scene_cp77_gltf
 
     - name: Download artifact with repository name
       if: ${{ inputs.artifact_name == '' }}
       uses: actions/download-artifact@v3
       with:
         name: ${{ github.event.repository.name }}
-        path: ./
+        path: ./i_scene_cp77_gltf
 
     - name: Zip contents of out
       shell: bash
       run: |
-        zip -r ./${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip ./
+        zip -r ./i_scene_cp77_gltf/${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip ./i_scene_cp77_gltf/
       
     - name: LS
       shell: bash
-      run: ls ./
+      run: ls ./i_scene_cp77_gltf
 
     - name: Release
       uses: softprops/action-gh-release@v1
@@ -75,5 +75,5 @@ runs:
         name: ${{ env.RELEASE_NAME }} v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}
         prerelease: ${{ inputs.release_stage != 'gold' && 'true' || 'false' }}
         tag_name: v${{inputs.version}}
-        files: ./${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip
+        files: ./i_scene_cp77_gltf/${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip
 
