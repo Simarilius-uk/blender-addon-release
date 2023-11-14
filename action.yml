@@ -57,16 +57,16 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: ${{ github.event.repository.name }}
-        path: ./out
+        path: ./
 
     - name: Zip contents of out
       shell: bash
       run: |
-        zip -r ./${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip ./out
+        zip -r ./${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip ./
       
     - name: LS
       shell: bash
-      run: ls ./out
+      run: ls ./
 
     - name: Release
       uses: softprops/action-gh-release@v1
@@ -75,5 +75,5 @@ runs:
         name: ${{ env.RELEASE_NAME }} v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}
         prerelease: ${{ inputs.release_stage != 'gold' && 'true' || 'false' }}
         tag_name: v${{inputs.version}}
-        files: ./out/${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip
+        files: ./${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip
 
