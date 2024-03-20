@@ -62,7 +62,7 @@ runs:
     - name: Zip contents of out
       shell: bash
       run: |
-        zip -r ./i_scene_cp77_gltf/${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip ./i_scene_cp77_gltf/
+        zip -r ./i_scene_cp77_gltf/${{ inputs.artifact_name }}-v${{ inputs.version }}${{ env.RELEASE_SUFFIX }}.zip ./
       
     - name: LS
       shell: bash
